@@ -1,6 +1,6 @@
 A demo to use javascript ffp(FusionFi Protocol) sdk
 
-## install
+## Install
 
 ```bash
 npm install aoffp bignumber.js axios
@@ -10,13 +10,15 @@ yarn add aoffp bignumber.js axios
 
 ## Run orderbook case
 
-### Set up config
+If you're not using your own keys, the repos have already provided two test wallets, agents, and test tokens for you. Please start from step 5.
 
-Put your ar keyfile object to ./wallets/wallet1.json and ./wallets/wallet2.json.
+### 1. Set up config
 
-Must named wallet1.json and wallet2.json.
+Put your ar keyfile object to `./wallets/wallet1.json` and `./wallets/wallet2.json`.
 
-### Get token airdrop
+Must named `wallet1.json` and `wallet2.json`.
+
+### 2. Get token airdrop
 
 We set $HELLO & $KITTY token for test, you can get those tokens by `airdrop.js`.
 
@@ -38,7 +40,7 @@ $HELLO balance  100000000000000
 $KITTY balance  100000000000000
 ```
 
-### Create your orderbook agent
+### 3. Create your orderbook agent
 
 ```bash
 node ./orderbook/create.js
@@ -53,7 +55,7 @@ ORHaLUrAiknTAq2Wszoyl6buJrd3MqDKLTF_2CggLtw create orderbook agent: Cns0yMx0Ey3Z
 
 Record those orderbook agents id. It's will be used next step.
 
-### Deposit token to your orderbook agent
+### 4. Deposit token to your orderbook agent
 
 Edit ./orderbook/deposit.js and set your agent id.
 
@@ -80,7 +82,7 @@ node ./balance.js --address='8GIoDaxheWB2HSvdWehQHrIYilzIty5_8NZt4XHojpw'
 
 Edit `deposit.js` again, set your second agent id. Run and check agent balance again. Then those two agents had $HELLO and $KITTY tokens.
 
-### Make order
+### 5. Make order
 
 We use the first one agent to create a new order. So you need to set first agent id in `make.js`.
 
@@ -120,7 +122,7 @@ openOrders [
 
 Record the NoteID, if taker want to fill this order, use NoteID for settlement.
 
-### Take order
+### 6. Take order
 
 Edit ./orderbook/take.js, set agent id and note id.
 
