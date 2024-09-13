@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "aoffp": "^0.0.2",
+    "axios": "^1.7.7",
+    "bignumber.js": "^9.1.2"
+  }
+}
