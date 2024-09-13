@@ -57,14 +57,14 @@ Record those orderbook agents id. It's will be used next step.
 
 ### 4. Deposit token to your orderbook agent
 
-Edit ./orderbook/deposit.js and set your agent id.
+Edit `./orderbook/deposit.js` and set your agent id.
 
 ```javascript
 ...
-	// set the jwk(json) and agent id by yourself
-	const jwk = arJWK1
-	// We create two orderbook agents for the test, this is the first one 
-	const agentId = '8GIoDaxheWB2HSvdWehQHrIYilzIty5_8NZt4XHojpw'
+// set the jwk(json) and agent id by yourself
+const jwk = arJWK1
+// We create two orderbook agents for the test, this is the first one 
+const agentId = '8GIoDaxheWB2HSvdWehQHrIYilzIty5_8NZt4XHojpw'
 ...
 ```
 
@@ -86,7 +86,7 @@ Edit `deposit.js` again, set your second agent id. Run and check agent balance a
 
 We use the first one agent to create a new order. So you need to set first agent id in `make.js`.
 
-Edit ./orderbook/make.js
+Edit `./orderbook/make.js`
 
 ```javascript
 ...
@@ -124,7 +124,7 @@ Record the NoteID, if taker want to fill this order, use NoteID for settlement.
 
 ### 6. Take order
 
-Edit ./orderbook/take.js, set agent id and note id.
+Edit `./orderbook/take.js`, set agent id and note id.
 
 ```javascript
 // set your agent id here
