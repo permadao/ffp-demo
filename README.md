@@ -10,13 +10,13 @@ yarn add
 
 ## Run orderbook case
 
-If you're not using your own keys, the repos have already provided two test wallets, agents, and test tokens for you. Please start from step 5.
-
 ### 1. Set up config
 
-Put your ar keyfile object to `./wallets/wallet1.json` and `./wallets/wallet2.json`.
+Generate some new wallets for test.
 
-Must named `wallet1.json` and `wallet2.json`.
+```bash
+node ./generate.js
+```
 
 ### 2. Get token airdrop
 
