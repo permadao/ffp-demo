@@ -3,9 +3,9 @@ A demo to use javascript ffp(FusionFi Protocol) sdk
 ## Install
 
 ```bash
-npm install aoffp bignumber.js axios
+npm install
 # or
-yarn add aoffp bignumber.js axios
+yarn add
 ```
 
 ## Run orderbook case
