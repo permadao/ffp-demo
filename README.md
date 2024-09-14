@@ -18,7 +18,7 @@ Generate some new wallets for test.
 node ./generate.js
 ```
 
-Set up `WALLET1` & `WALLET2` environment variables in `.env` file.
+Set up `WALLET1` & `WALLET2` environment variables in `.env.local` file.
 
 ```bash
 export $(cat .env.local | xargs)
@@ -45,6 +45,8 @@ address: wBn7-31aDtChhLfUk_eXNG9Nbafa_ghT29XRxk7osiM
 $HELLO balance  100000000000000
 $KITTY balance  100000000000000
 ```
+
+This will be the same for `WALLET2`.
 
 ### 3. Create your orderbook agent
 
@@ -74,22 +76,17 @@ Deposit into your orderbook
 node ./orderbook/deposit.js --walletN=1 --agentId=$AGENT1
 ```
 
-Run
-
-```bash
-node ./orderbook/create.js
-```
-
 If you will check balances in your agent:
 
 ```bash
 node ./balance.js --address=$AGENT1
 ```
 
-Edit do the same for the second agent.
+Do the same for the second agent.
 
 ```bash
 node ./orderbook/deposit.js --walletN=2 --agentId=$AGENT2
+node ./balance.js --address=$AGENT2
 ```
 
 ### 5. Make order
@@ -122,7 +119,7 @@ openOrders [
 ]
 ```
 
-Set the note id to env variable.
+Set the `NoteID` to env variable.
 
 ```bash
 export NOTEID=<NoteID>
