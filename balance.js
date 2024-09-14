@@ -7,9 +7,9 @@ const parsedArgs = args.reduce((acc, arg) => {
   acc[key.replace(/^--/, '')] = value;
   return acc;
 }, {});
+const owner = parsedArgs.address
 
 const testRun = async () => {
-	const owner = parsedArgs.address
 	console.log('address:', owner)
 
     msg = await ao.dryrun({
