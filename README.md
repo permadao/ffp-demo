@@ -15,6 +15,7 @@ yarn add
 Generate some new wallets for test.
 
 ```bash
+make wallets
 node ./generate.js
 ```
 
