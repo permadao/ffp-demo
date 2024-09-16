@@ -1,3 +1,4 @@
 node_modules
-package-lock.json
+wallets/*
+.env.local
 .DS_Store

@@ -4,9 +4,16 @@ const aoconnect = require('@permaweb/aoconnect')
 const { getSettleProcessId, Orderbook } = aoffp
 const { createDataItemSigner } = aoconnect
 
-const testRun = async () => {
-  const agentId = '8GIoDaxheWB2HSvdWehQHrIYilzIty5_8NZt4XHojpw'
+const args = process.argv.slice(2);
 
+const parsedArgs = args.reduce((acc, arg) => {
+  const [key, value] = arg.split('=');
+  acc[key.replace(/^--/, '')] = value;
+  return acc;
+}, {});
+const agentId = parsedArgs.agentId
+
+const testRun = async () => {
   const settleProcess = getSettleProcessId(isProd)
   const signerA = createDataItemSigner(arJWK1)
   const agent = new Orderbook(signerA, agentId, settleProcess)
