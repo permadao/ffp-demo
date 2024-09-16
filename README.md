@@ -62,11 +62,10 @@ wBn7-31aDtChhLfUk_eXNG9Nbafa_ghT29XRxk7osiM create orderbook agent: <YourOrderBo
 ORHaLUrAiknTAq2Wszoyl6buJrd3MqDKLTF_2CggLtw create orderbook agent: <YourOrderBookAgent2>
 ```
 
-Record those orderbook agents ids as env variables.
+Set up `WALLET1` & `WALLET2` environment variables in `.env.local` file.
 
 ```bash
-export AGENT1=<YourOrderBookAgent1>
-export AGENT2=<YourOrderBookAgent2>
+export $(cat .env.local | xargs)
 ```
 
 ### 4. Deposit token to your orderbook agent
@@ -118,6 +117,12 @@ openOrders [
     Amount: '1'
   }
 ]
+```
+
+If no orders output, you can use the following command for querying.
+
+```bash
+node ./orderbook/query.js --agentId=$AGENT1
 ```
 
 Set the `NoteID` to env variable.
