@@ -1,14 +1,28 @@
-A demo to use javascript ffp(FusionFi Protocol) sdk
+A demo to use javascript ffp(FusionFi Protocol) sdk.
+
+FusionFi is a unified financial protocol on permaweb(ao).
+
+With ffp, you can quickly implement various financial scenarios, including but not limited to: exchanges, lending, futures, and even stablecoins. If you're an application developer, you can seamlessly integrate ffp into your games and social apps. Using ffp, all processes on ao can achieve seamless financial business integration.
+
+Read more, [Intelligent Finance: From AgentFi to FusionFi, Exploring AI-Driven Financial Models on AO](https://x.com/outprog_ar/status/1800907057740095713) .
 
 ## Install
+
+Integrate ffp into your project.
+
+```bash
+npm install aoffp
+```
+
+## Run orderbook case
+
+### 0. Install
 
 ```bash
 npm install
 # or
 yarn add
 ```
-
-## Run orderbook case
 
 ### 1. Set up config
 
