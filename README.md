@@ -29,7 +29,7 @@ yarn add
 Generate some new wallets for test.
 
 ```bash
-make wallets
+mkdir wallets
 node ./generate.js
 ```
 
@@ -51,7 +51,7 @@ When this flow is done, you can check the balance:
 
 ```bash
 node ./balance.js --address=$WALLET1
-```
+``
 
 Output:
 
