@@ -37,7 +37,7 @@ const testRun = async () => {
   await orderbookAgent.deposit(helloProcess, '100')
   await orderbookAgent.deposit(kittyProcess, '100')
 
-  // 构造价差订单
+  // make arbitrary orders
   const makeOrderMessageId = await orderbookAgent.makeOrder(helloProcess, kittyProcess, '10', '1')
   const myOrders = await orderbookAgent.getMyOrders(helloProcess, kittyProcess, 'Open', true, 1, 10)
   const orderbookOrder = myOrders[0]
