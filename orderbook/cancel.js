@@ -4,14 +4,22 @@ const aoconnect = require('@permaweb/aoconnect')
 const { getSettleProcessId, Orderbook } = aoffp
 const { createDataItemSigner } = aoconnect
 
-const testRun = async () => {
-  const agentId = 'TXVxifgmQxQGErobcUj7Yg2FJea5J6ey_WK2Bnctd1M'
+const args = process.argv.slice(2);
 
+const parsedArgs = args.reduce((acc, arg) => {
+    const [key, value] = arg.split('=');
+    acc[key.replace(/^--/, '')] = value;
+    return acc;
+}, {});
+const agentId = parsedArgs.agentId
+const noteId = parsedArgs.noteId
+
+const testRun = async () => {
   const settleProcess = getSettleProcessId(isProd)
   const signer = createDataItemSigner(arJWK1)
   const agent = new Orderbook(signer, agentId, settleProcess)
 
-  await agent.cancelOrder('cBl0bL8jMKy-pfuv_YWf_---V-RjvlMJBYCq93ZfJ_g')
+  await agent.cancelOrder(noteId)
 
   // get opened order
   const openOrders = await agent.getMyOrders(helloProcess, kittyProcess, 'Open', false)

@@ -1,4 +1,4 @@
-const { arJWK2, helloProcess, kittyProcess, getProcessResult, isProd } = require('../config')
+const { arJWK1, arJWK2, helloProcess, kittyProcess, getProcessResult, isProd } = require('../config')
 const aoffp = require('aoffp')
 const Arweave = require('arweave')
 const aoconnect = require('@permaweb/aoconnect')
@@ -14,12 +14,19 @@ const parsedArgs = args.reduce((acc, arg) => {
 }, {});
 const agentId = parsedArgs.agentId
 const noteId = parsedArgs.noteId
+const walletN = parsedArgs.walletN
+
+const jwk = [arJWK1, arJWK2][walletN - 1]
+if (!jwk) {
+    console.error('walletN is required')
+    process.exit(1)
+}
 
 const testRun = async () => {
   const settleProcess = getSettleProcessId(isProd)
 
   // take order by signer
-  const signer = createDataItemSigner(arJWK2)
+  const signer = createDataItemSigner(jwk)
   const agent = new Orderbook(signer, agentId, settleProcess)
 
   const takeOrderMessageId = await agent.takeOrder([noteId])

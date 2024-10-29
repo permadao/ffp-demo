@@ -43,7 +43,7 @@ const defaultAOConfig = {
   GATEWAY_URL: 'https://g8way.io:443'
 }
 
-const isProd = true
+const isProd = false
 
 const arJWK1 = JSON.parse(fs.readFileSync(path.resolve(__dirname, './wallets/wallet1.json')))
 const arJWK2 = JSON.parse(fs.readFileSync(path.resolve(__dirname, './wallets/wallet2.json')))
@@ -61,13 +61,30 @@ const getProcessResult = async (message, process) => {
   return { message: Messages, output: Output, spawns: Spawns, err: Error }
 }
 
+const ammSlippageOfPercent = 0.5
+
+const getTokenBalance = async (process, address) => {
+  const res = await ao.dryrun({
+	  Id: '0000000000000000000000000000000000000000001',
+    Owner: address,
+    process: process,
+    tags: [
+      { name: 'Action', value: 'Balance' },
+    ]
+  })
+  return res.Messages[0].Data
+}
+
 module.exports = {
   ao,
+  BN,
   isProd,
   defaultAOConfig,
   arJWK1,
   arJWK2,
   helloProcess,
   kittyProcess,
-  getProcessResult
+  getProcessResult,
+  getTokenBalance,
+  ammSlippageOfPercent
 }

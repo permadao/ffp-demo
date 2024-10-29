@@ -3,7 +3,7 @@
     "generate": "node generate.js"
   },
   "dependencies": {
-    "aoffp": "^0.0.2",
+    "aoffp": "^0.0.10",
     "axios": "^1.7.7",
     "bignumber.js": "^9.1.2"
   },

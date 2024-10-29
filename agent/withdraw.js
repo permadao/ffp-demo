@@ -2,7 +2,7 @@ const { arJWK1, arJWK2, helloProcess, kittyProcess, getProcessResult, ao, isProd
 const aoffp = require('aoffp')
 const Arweave = require('arweave')
 const aoconnect = require('@permaweb/aoconnect')
-const { getSettleProcessId, Orderbook, createOrderbookProcess } = aoffp
+const { getSettleProcessId, Agent, createOrderbookProcess } = aoffp
 const { createDataItemSigner } = aoconnect
 const arweave = Arweave.init({})
 
@@ -28,7 +28,7 @@ const testRun = async () => {
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
   const settleProcess = getSettleProcessId(isProd)
-	const agent = new Orderbook(signer, agentId, settleProcess)
+	const agent = new Agent(signer, agentId, settleProcess)
 
 	console.log('address', address)
 	console.log('agent', agentId)
@@ -40,7 +40,7 @@ const testRun = async () => {
     const depositKittyMessageId = await agent.withdraw(kittyProcess, kittyAmount)
     console.log('withdraw $Kitty MsgId', depositKittyMessageId)
   
-    // get balances of your orderbook agent process
+    // get balances of your agent process
     const balancesResult = await agent.balances()
     console.log('balancesResult', balancesResult)
 }
