@@ -2,7 +2,7 @@ const { arJWK1, arJWK2, helloProcess, kittyProcess, getProcessResult, getTokenBa
 const aoffp = require('aoffp')
 const Arweave = require('arweave')
 const aoconnect = require('@permaweb/aoconnect')
-const { Amm, getSettleProcessId, Orderbook, createOrderbookProcess, arbitrage } = aoffp
+const { Amm, Agent, getSettleProcessId, Orderbook, createOrderbookProcess, arbitrage } = aoffp
 const { createDataItemSigner } = aoconnect
 const arweave = Arweave.init({})
 
@@ -15,50 +15,54 @@ const parsedArgs = args.reduce((acc, arg) => {
     return acc;
 }, {});
 const agentId = parsedArgs.agentId
-const walletN = parsedArgs.walletN
+const orderbookAgentId = parsedArgs.orderbookAgentId
+const ammAgentId = parsedArgs.ammAgentId
 
-const ammProcess = agentId
+const ammProcess = ammAgentId
 
-const jwk = [arJWK1, arJWK2][walletN - 1]
-if (!jwk) {
-    console.error('walletN is required')
-    process.exit(1)
-}
 
 const testRun = async () => {
-  const address = await arweave.wallets.jwkToAddress(jwk)
-  const signer = createDataItemSigner(jwk)
-
   const settleProcess = getSettleProcessId(false)
-  const ammAgent = new Amm(address, signer, ammProcess)
-  const orderbookProcess = await createOrderbookProcess(address, signer, false)
-  const orderbookAgent = new Orderbook(signer, orderbookProcess, settleProcess)
+
+  const signer1 = createDataItemSigner(arJWK1)
+  const agent = new Agent(signer1, agentId, settleProcess)
+
+  const address = await arweave.wallets.jwkToAddress(arJWK2)
+  const signer2 = createDataItemSigner(arJWK2)
+  
+  const ammAgent = new Amm(address, signer2, ammProcess)
+  const orderbookAgent = new Orderbook(signer2, orderbookAgentId, settleProcess)
 
   await orderbookAgent.deposit(helloProcess, '100')
   await orderbookAgent.deposit(kittyProcess, '100')
 
-  // make arbitrary orders
+  // make an ORDERBOOKAGENT2 10 hello -> 1 kitty order
   const makeOrderMessageId = await orderbookAgent.makeOrder(helloProcess, kittyProcess, '10', '1')
   const myOrders = await orderbookAgent.getMyOrders(helloProcess, kittyProcess, 'Open', true, 1, 10)
   const orderbookOrder = myOrders[0]
   console.log('orderbookOrder', orderbookOrder)
 
   // get arbitrade order id from amm agent
-  const arbitrageOrder = await ammAgent.getArbitrageOrder(myOrders[0])
+  const arbitrageOrder = await ammAgent.makeOrder(orderbookOrder.AssetID, orderbookOrder.Amount, ammSlippageOfPercent)
   console.log('arbitrageOrder', arbitrageOrder)
-  
-  const helloBalanceBeforeArbitrage = await getTokenBalance(helloProcess, address)
-  const kittyBalanceBeforeArbitrage = await getTokenBalance(kittyProcess, address)
-  console.log('helloBalanceBeforeArbitrage', helloBalanceBeforeArbitrage)
-  console.log('kittyBalanceBeforeArbitrage', kittyBalanceBeforeArbitrage)
 
-  await arbitrage(signer, settleProcess, [orderbookOrder.NoteID, arbitrageOrder.NoteID])
+  if (+arbitrageOrder.Amount <= +orderbookOrder.HolderAmount) {
+    console.log('this order can not be arbitraged')
+    return
+  }
 
-  const helloBalanceAfterArbitrage = await getTokenBalance(helloProcess, address)
-  const kittyBalanceAfterArbitrage = await getTokenBalance(kittyProcess, address)
-  console.log('helloBalanceAfterArbitrage', helloBalanceAfterArbitrage)
-  console.log('kittyBalanceAfterArbitrage', kittyBalanceAfterArbitrage)
 
+  const balanceBefore = await agent.balances()
+  console.log('agent balanceBefore', balanceBefore)
+  const takeOrderMessageId = await agent.takeOrder([orderbookOrder.NoteID, arbitrageOrder.NoteID])
+  console.log('takeOrderMessageId', takeOrderMessageId)
+
+  await new Promise((resolve) => {
+    setTimeout(resolve, 2000)
+  })
+
+  const balanceAfter = await agent.balances()
+  console.log('agent balanceAfter', balanceAfter)
 }
 
 testRun()

@@ -324,7 +324,7 @@ node ./amm/query.js --walletN=2 --agentId=$AMMAGENT2
 #### 6. Arbitrage with orderbook order and AMM agent
 
 ```bash
-node ./arbitrage.js --walletN=2 --agentId=$AMMAGENT2
+node ./arbitrage.js --agentId=$AGENT1 --orderbookAgentId=$ORDERBOOKAGENT2 --ammAgentId=$AMMAGENT2
 ```
 
 #### 7. Remove liquidity from AMM agent
