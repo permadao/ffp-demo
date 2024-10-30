@@ -15,7 +15,7 @@ npm install aoffp
 ```
 
 * [Prepare](#prepare)
-  * [0. install](#0-install)
+  * [0. Install](#0-install)
   * [1. Set up config](#1-set-up-config)
   * [2. Get token airdrop](#2-get-token-airdrop)
 * [Use Case](#use-case)
@@ -26,13 +26,13 @@ npm install aoffp
     * [1. Create your orderbook agent](#1-create-your-orderbook-agent)
     * [2. Deposit token to your orderbook agent](#2-deposit-token-to-your-orderbook-agent)
     * [3. Make order](#3-make-order)
-    * [4. use agent1 to take order](#4-use-agent1-to-take-order)
+    * [4. Use agent1 to take order](#4-use-agent1-to-take-order)
   * [AMM](#amm)
     * [1. Create your AMM agent](#1-create-your-amm-agent)
     * [2. Deposit token to your AMM agent](#2-deposit-token-to-your-amm-agent)
     * [3. Add liquidity](#3-add-liquidity)
-    * [4. make an AMM order from AMM agent](#4-make-an-amm-order-from-amm-agent)
-    * [5. take this order by agent](#5-take-this-order-by-agent)
+    * [4. Make an AMM order from AMM agent](#4-make-an-amm-order-from-amm-agent)
+    * [5. Take this order by agent](#5-take-this-order-by-agent)
     * [6. Arbitrage with orderbook order and AMM agent](#6-arbitrage-with-orderbook-order-and-amm-agent)
     * [7. Remove liquidity from AMM agent](#7-remove-liquidity-from-amm-agent)
 
