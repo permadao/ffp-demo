@@ -212,7 +212,7 @@ Set the `NoteID` to env variable.
 export NOTEID=<NoteID>
 ```
 
-#### 4. use agent1 to take order
+#### 4. Use agent1 to take order
 
 Run
 
@@ -276,7 +276,7 @@ If you will query agent info:
 node ./amm/query.js --walletN=2 --agentId=$AMMAGENT2
 ```
 
-#### 4. make an AMM order from AMM agent
+#### 4. Make an AMM order from AMM agent
 
 ```bash
 node ./amm/request.js --walletN=2 --agentId=$AMMAGENT2
@@ -305,7 +305,7 @@ Set the `NoteID` to env variable.
 export NOTEID=<NoteID>
 ```
 
-#### 5. take this order by agent
+#### 5. Take this order by agent
 
 Run
 
