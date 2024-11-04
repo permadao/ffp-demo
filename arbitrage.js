@@ -30,7 +30,6 @@ const testRun = async () => {
   const address = await arweave.wallets.jwkToAddress(arJWK2)
   const signer2 = createDataItemSigner(arJWK2)
   
-  const ammAgent = new Amm(address, signer2, ammProcess)
   const orderbookAgent = new Orderbook(signer2, orderbookAgentId, settleProcess)
 
   await orderbookAgent.deposit(helloProcess, '100')
@@ -43,7 +42,7 @@ const testRun = async () => {
   console.log('orderbookOrder', orderbookOrder)
 
   // get arbitrade order id from amm agent
-  const arbitrageOrder = await ammAgent.makeOrder(orderbookOrder.AssetID, orderbookOrder.Amount, ammSlippageOfPercent)
+  const arbitrageOrder = await aoffp.ammRequest(ammProcess, orderbookOrder.AssetID, orderbookOrder.Amount, ammSlippageOfPercent, signer1)
   console.log('arbitrageOrder', arbitrageOrder)
 
   if (+arbitrageOrder.Amount <= +orderbookOrder.HolderAmount) {
@@ -58,7 +57,7 @@ const testRun = async () => {
   console.log('takeOrderMessageId', takeOrderMessageId)
 
   await new Promise((resolve) => {
-    setTimeout(resolve, 2000)
+    setTimeout(resolve, 10000)
   })
 
   const balanceAfter = await agent.balances()

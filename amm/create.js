@@ -12,7 +12,8 @@ const testRun = async () => {
   for (let jwk of [arJWK1, arJWK2]) {
     const address = await arweave.wallets.jwkToAddress(jwk)
     const signer = createDataItemSigner(jwk)
-    agentId = await createAmmProcess(signer)
+    const ammAgent = await createAmmProcess(address, signer)
+    const agentId = ammAgent.agentId
     console.log(address, 'create amm agent:', agentId)
 
 	fs.appendFileSync(".env.local", `AMMAGENT${i}=${agentId}\n`);
