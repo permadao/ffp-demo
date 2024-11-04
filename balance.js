@@ -12,7 +12,7 @@ const owner = parsedArgs.address
 const testRun = async () => {
 	console.log('address:', owner)
 
-    msg = await ao.dryrun({
+    let msg = await ao.dryrun({
 	  Id: '0000000000000000000000000000000000000000001',
       Owner: owner,
       process: helloProcess,

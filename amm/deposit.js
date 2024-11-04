@@ -2,8 +2,8 @@ const { arJWK1, arJWK2, helloProcess, kittyProcess, getProcessResult, ao, isProd
 const aoffp = require('aoffp')
 const Arweave = require('arweave')
 const aoconnect = require('@permaweb/aoconnect')
-const { Amm } = aoffp
 const { createDataItemSigner } = aoconnect
+const { Amm } = aoffp
 const arweave = Arweave.init({})
 // const process = require('process')
 
