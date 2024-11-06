@@ -1,10 +1,10 @@
-A demo to use javascript ffp(FusionFi Protocol) sdk.
+This is a demo on how to use the FusionFi Protocol (ffp) JavaScript SDK.
 
 FusionFi is a unified financial protocol on permaweb(ao). Powered by [everVision Labs](https://ever.vision).
 
-With ffp, you can quickly implement various financial scenarios, including but not limited to: exchanges, lending, futures, and even stablecoins. If you're an application developer, you can seamlessly integrate ffp into your games and social apps. Using ffp, all processes on ao can achieve seamless financial business integration.
+The ffp SDK enables rapid implementation of various financial scenarios, including but not limited to exchanges, lending, futures, and stablecoins. If you're an application developer, you can seamlessly integrate ffp into your games and social apps. Using ffp, all processes on ao can achieve seamless financial business integration.
 
-Read more, [Intelligent Finance: From AgentFi to FusionFi, Exploring AI-Driven Financial Models on AO](https://x.com/outprog_ar/status/1800907057740095713).
+Read more in [Intelligent Finance: From AgentFi to FusionFi, Exploring AI-Driven Financial Models on AO](https://x.com/outprog_ar/status/1800907057740095713).
 
 ## Install
 
@@ -15,7 +15,7 @@ npm install aoffp
 ```
 
 * [Prepare](#prepare)
-  * [0. Install](#0-install)
+  * [0. Install](#0-Install)
   * [1. Set up config](#1-set-up-config)
   * [2. Get token airdrop](#2-get-token-airdrop)
 * [Use Case](#use-case)
@@ -26,19 +26,19 @@ npm install aoffp
     * [1. Create your orderbook agent](#1-create-your-orderbook-agent)
     * [2. Deposit token to your orderbook agent](#2-deposit-token-to-your-orderbook-agent)
     * [3. Make order](#3-make-order)
-    * [4. Use agent1 to take order](#4-use-agent1-to-take-order)
+    * [4. Use AGNET1 to take order](#4-use-AGENT1-to-take-order)
   * [AMM](#amm)
     * [1. Create your AMM agent](#1-create-your-amm-agent)
     * [2. Deposit token to your AMM agent](#2-deposit-token-to-your-amm-agent)
     * [3. Add liquidity](#3-add-liquidity)
-    * [4. Make an AMM order from AMM agent](#4-make-an-amm-order-from-amm-agent)
+    * [4. Request an order from AMM agent](#4-Request-an-order-from-amm-agent)
     * [5. Take this order by agent](#5-take-this-order-by-agent)
     * [6. Arbitrage with orderbook order and AMM agent](#6-arbitrage-with-orderbook-order-and-amm-agent)
     * [7. Remove liquidity from AMM agent](#7-remove-liquidity-from-amm-agent)
 
 ## Prepare
 
-### 0. install
+### 0. Install
 
 ```bash
 npm install
@@ -89,7 +89,7 @@ This will be the same for `WALLET2`.
 
 Next, we will introduce the use cases of ffp, including orderbook, AMM, and lending.
 
-From beggining, you should create your first agent using the following example.
+From beginning, you should create your first agent using the following example.
 
 ### Agent
 
@@ -276,7 +276,7 @@ If you will query agent info:
 node ./amm/query.js --walletN=2 --agentId=$AMMAGENT2
 ```
 
-#### 4. Make an AMM order from AMM agent
+#### 4. Request an order from AMM agent
 
 ```bash
 node ./amm/request.js --walletN=2 --agentId=$AMMAGENT2
@@ -306,8 +306,6 @@ export NOTEID=<NoteID>
 ```
 
 #### 5. Take this order by agent
-
-Run
 
 ```bash
 node ./agent/take.js --walletN=1 --agentId=$AGENT1 --noteId=$NOTEID
