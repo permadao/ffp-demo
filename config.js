@@ -49,8 +49,8 @@ const arJWK1 = JSON.parse(fs.readFileSync(path.resolve(__dirname, './wallets/wal
 const arJWK2 = JSON.parse(fs.readFileSync(path.resolve(__dirname, './wallets/wallet2.json')))
 
 // test tokens
-const helloProcess = '-v4cUCUcRiJH67jPMUt-Uhn-K4PHxrkoySM2uqAjAF0'
-const kittyProcess = '4557tfvtAlS8WS0-KF0sGdfgy6An2dcVXQUGocrKV7U'
+const helloProcess = 'AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM'
+const kittyProcess = '0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0'
 const ao = connect(defaultAOConfig)
 
 const getProcessResult = async (message, process) => {
