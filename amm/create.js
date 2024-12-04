@@ -12,7 +12,7 @@ const testRun = async () => {
   for (let jwk of [arJWK1, arJWK2]) {
     const address = await arweave.wallets.jwkToAddress(jwk)
     const signer = createDataItemSigner(jwk)
-    const ammAgent = await createAmmProcess(address, signer)
+    const ammAgent = await createAmmProcess(signer)
     const agentId = ammAgent.agentId
     console.log(address, 'create amm agent:', agentId)
 

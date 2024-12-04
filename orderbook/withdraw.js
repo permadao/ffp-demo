@@ -27,7 +27,7 @@ const testRun = async () => {
 
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
-  const settleProcess = getSettleProcessId(isProd)
+  const settleProcess = getSettleProcessId()
 	const agent = new Orderbook(signer, agentId, settleProcess)
 
 	console.log('address', address)

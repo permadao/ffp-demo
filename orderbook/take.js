@@ -23,7 +23,7 @@ if (!jwk) {
 }
 
 const testRun = async () => {
-  const settleProcess = getSettleProcessId(isProd)
+  const settleProcess = getSettleProcessId()
 
   // take order by signer
   const signer = createDataItemSigner(jwk)

@@ -22,13 +22,13 @@ if (!jwk) {
 
 
 const testRun = async () => {
-  const settleProcess = getSettleProcessId(isProd)
+  const settleProcess = getSettleProcessId()
   const signerA = createDataItemSigner(jwk)
   const agent = new Orderbook(signerA, agentId, settleProcess)
 
   // signer make order
-  const makeOrderMessageId = await agent.makeOrder(helloProcess, kittyProcess, '1', '3')
-  console.log('make order MsgId', makeOrderMessageId)
+  const order = await agent.makeOrder(helloProcess, kittyProcess, '1', '3')
+  console.log('make order', order)
 
   // get opened order
   const openOrders = await agent.getMyOrders(helloProcess, kittyProcess, 'Open', false)

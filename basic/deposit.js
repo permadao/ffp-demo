@@ -31,7 +31,7 @@ const testRun = async () => {
 
     const address = await arweave.wallets.jwkToAddress(jwk)
     const signer = createDataItemSigner(jwk)
-    const settleProcess = getSettleProcessId(isProd)
+    const settleProcess = getSettleProcessId()
 	const agent = new Orderbook(signer, agentId, settleProcess)
 
 	console.log('address', address)
@@ -43,10 +43,7 @@ const testRun = async () => {
   
     const depositKittyMessageId = await agent.deposit(kittyProcess, kittyAmount)
     console.log('deposit $Kitty MsgId', depositKittyMessageId)
-  
-    // get balances of your orderbook process
-    const balancesResult = await agent.balances()
-    console.log('balancesResult', balancesResult)
+
 }
 
 testRun()

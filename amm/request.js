@@ -32,7 +32,7 @@ const testRun = async () => {
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
   
-  const order = await aoffp.ammRequest(ammProcess, helloProcess, helloAmount, ammSlippageOfPercent, signer)
+  const order = await aoffp.ammRequest(signer, ammProcess, helloProcess, helloAmount, kittyProcess)
   console.log('order', JSON.stringify(order, null, 2))
 }
 

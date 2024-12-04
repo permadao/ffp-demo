@@ -29,13 +29,13 @@ const testRun = async () => {
 
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
-	const agent = new Amm(address, signer, ammProcess)
+	const agent = new Amm(signer, ammProcess)
 
 	console.log('address', address)
 	console.log('agent', ammProcess)
   
   // withdraw
-  const withdrawMessageId = await agent.withdraw()
+  const withdrawMessageId = await agent.withdraw(helloProcess, '10')
   const withdrawResult = await getProcessResult(withdrawMessageId, ammProcess)
   console.log('withdrawResult', JSON.stringify(withdrawResult, null, 2))
 }

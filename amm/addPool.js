@@ -27,19 +27,24 @@ if (!jwk) {
 
 const testRun = async () => {
 	// set up amount by yourself
-	const helloAmount = '100'
+	const helloAmount = '50'
+  const kittyAmount = '50'
 
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
-	const agent = new Amm(address, signer, ammProcess)
+	const agent = new Amm(signer, ammProcess)
 
 	console.log('address', address)
 	console.log('agent', ammProcess)
+
+  const x = helloProcess < kittyProcess ? helloProcess : kittyProcess
+  const y = helloProcess < kittyProcess ? kittyProcess : helloProcess
+  const px = helloProcess < kittyProcess ? helloAmount : kittyAmount
+  const py = helloProcess < kittyProcess ? kittyAmount : helloAmount
   
-  const minLiquidity = await agent.getMinLiquidityByX(helloAmount, ammSlippageOfPercent)
-  const addLiquidityMessageId = await agent.addLiquidity(minLiquidity)
-  const addLiquidityResult = await getProcessResult(addLiquidityMessageId, ammProcess)
-  console.log('addLiquidityResult', JSON.stringify(addLiquidityResult, null, 2))
+  const addPoolMessageId = await agent.addUniswapV2Pool(x, y, px, py, 30)
+  const pools = await agent.getPools()
+  console.log('pools', JSON.stringify(pools, null, 2))
 }
 
 testRun()

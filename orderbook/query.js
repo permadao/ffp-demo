@@ -14,7 +14,7 @@ const parsedArgs = args.reduce((acc, arg) => {
 const agentId = parsedArgs.agentId
 
 const testRun = async () => {
-  const settleProcess = getSettleProcessId(isProd)
+  const settleProcess = getSettleProcessId()
   const signer = createDataItemSigner(arJWK1)
   const agent = new Orderbook(signer, agentId, settleProcess)
 

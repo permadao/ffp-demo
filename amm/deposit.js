@@ -32,7 +32,7 @@ const testRun = async () => {
 
   const address = await arweave.wallets.jwkToAddress(jwk)
   const signer = createDataItemSigner(jwk)
-	const agent = new Amm(address, signer, ammProcess)
+	const agent = new Amm(signer, ammProcess)
 
 	console.log('address', address)
 	console.log('agent', ammProcess)
@@ -43,10 +43,6 @@ const testRun = async () => {
 
   const depositKittyMessageId = await agent.deposit(kittyProcess, kittyAmount)
   console.log('deposit $Kitty MsgId', depositKittyMessageId)
-
-  // get balance of your amm process
-  const balanceResult = await agent.balance()
-  console.log('balanceResult', balanceResult)
 }
 
 testRun()

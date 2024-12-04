@@ -1,44 +1,37 @@
-This is a demo on how to use the FusionFi Protocol (ffp) JavaScript SDK.
+A demo to use javascript ffp(FusionFi Protocol) sdk.
 
 FusionFi is a unified financial protocol on permaweb(ao). Powered by [everVision Labs](https://ever.vision).
 
-The ffp SDK enables rapid implementation of various financial scenarios, including but not limited to exchanges, lending, futures, and stablecoins. If you're an application developer, you can seamlessly integrate ffp into your games and social apps. Using ffp, all processes on ao can achieve seamless financial business integration.
+With ffp, you can quickly implement various financial scenarios, including but not limited to: exchanges, lending, futures, and even stablecoins. If you're an application developer, you can seamlessly integrate ffp into your games and social apps. Using ffp, all processes on ao can achieve seamless financial business integration.
 
-Read more in [Intelligent Finance: From AgentFi to FusionFi, Exploring AI-Driven Financial Models on AO](https://x.com/outprog_ar/status/1800907057740095713).
-
-## Install
-
-Integrate ffp into your project.
-
-```bash
-npm install aoffp
-```
+Read more, [Intelligent Finance: From AgentFi to FusionFi, Exploring AI-Driven Financial Models on AO](https://x.com/outprog_ar/status/1800907057740095713).
 
 * [Prepare](#prepare)
-  * [0. Install](#0-Install)
+  * [0. install](#0-install)
   * [1. Set up config](#1-set-up-config)
   * [2. Get token airdrop](#2-get-token-airdrop)
 * [Use Case](#use-case)
-  * [Agent](#agent)
-    * [1. Create your agent](#1-create-your-agent)
+  * [Basic](#agent)
+    * [1. Create your basic agent](#1-create-your-basic-agent)
     * [2. Deposit token to your agent](#2-deposit-token-to-your-agent)
   * [Orderbook](#orderbook)
     * [1. Create your orderbook agent](#1-create-your-orderbook-agent)
     * [2. Deposit token to your orderbook agent](#2-deposit-token-to-your-orderbook-agent)
     * [3. Make order](#3-make-order)
-    * [4. Use AGNET1 to take order](#4-use-AGENT1-to-take-order)
+    * [4. use agent1 to take order](#4-use-agent1-to-take-order)
   * [AMM](#amm)
     * [1. Create your AMM agent](#1-create-your-amm-agent)
     * [2. Deposit token to your AMM agent](#2-deposit-token-to-your-amm-agent)
-    * [3. Add liquidity](#3-add-liquidity)
-    * [4. Request an order from AMM agent](#4-Request-an-order-from-amm-agent)
-    * [5. Take this order by agent](#5-take-this-order-by-agent)
+    * [3. Add Pool](#3-add-pool)
+    * [4. make an AMM order from AMM agent](#4-make-an-amm-order-from-amm-agent)
+    * [5. take this order by agent](#5-take-this-order-by-agent)
     * [6. Arbitrage with orderbook order and AMM agent](#6-arbitrage-with-orderbook-order-and-amm-agent)
-    * [7. Remove liquidity from AMM agent](#7-remove-liquidity-from-amm-agent)
 
 ## Prepare
 
-### 0. Install
+### 0. install
+
+Integrate ffp into your project.
 
 ```bash
 npm install
@@ -87,16 +80,14 @@ This will be the same for `WALLET2`.
 
 ## Use Case
 
-Next, we will introduce the use cases of ffp, including orderbook, AMM, and lending.
+Next, we will introduce the use cases of f f p, including orderbook, AMM, and lending.
 
-From beginning, you should create your first agent using the following example.
+### Basic
 
-### Agent
-
-#### 1. Create your agent
+#### 1. Create your basic agent
 
 ```bash
-node ./agent/create.js
+node ./basic/create.js
 ```
 
 Output:
@@ -114,10 +105,10 @@ export $(cat .env.local | xargs)
 
 #### 2. Deposit token to your agent
 
-Deposit into your agent.
+Deposit into your agent
 
 ```bash
-node ./agent/deposit.js --walletN=1 --agentId=$AGENT1
+node ./basic/deposit.js --walletN=1 --agentId=$AGENT1
 ```
 
 If you will check balances in your agent:
@@ -129,11 +120,9 @@ node ./balance.js --address=$AGENT1
 Do the same for the second agent.
 
 ```bash
-node ./agent/deposit.js --walletN=2 --agentId=$AGENT2
+node ./basic/deposit.js --walletN=2 --agentId=$AGENT2
 node ./balance.js --address=$AGENT2
 ```
-
-Good job! You already created two agents. You can try Orderbook agent or AMM agent now. If you want to try AMM agent, you can skip the orderbook section.
 
 ### Orderbook
 
@@ -158,7 +147,7 @@ export $(cat .env.local | xargs)
 
 #### 2. Deposit token to your orderbook agent
 
-Deposit into your orderbook.
+Deposit into your orderbook
 
 ```bash
 node ./orderbook/deposit.js --walletN=2 --agentId=$ORDERBOOKAGENT2
@@ -183,21 +172,20 @@ node ./orderbook/make.js --walletN=2 --agentId=$ORDERBOOKAGENT2
 Output:
 
 ```
-make order MsgId iZzNQW0nem81JlgNk3fm1TXmwtK2mq2lwBoDvALeguM
-openOrders [
-  {
-    ID: 1,
-    HolderAssetID: '4557tfvtAlS8WS0-KF0sGdfgy6An2dcVXQUGocrKV7U',
+openOrders {
+  MVBggDjYkl3UxoHRZ2rO6ZLDcN4ax4Af6rehyYJ3CH0: {
+    ID: 2600,
+    AssetID: 'AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM',
+    HolderAssetID: '0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0',
+    NoteID: 'MVBggDjYkl3UxoHRZ2rO6ZLDcN4ax4Af6rehyYJ3CH0',
+    IssueDate: 1733297306962,
     HolderAmount: '3',
-    NoteID: '<NoteID>',
-    Issuer: '8GIoDaxheWB2HSvdWehQHrIYilzIty5_8NZt4XHojpw',
-    Type: 'Orderbook',
-    AssetID: '-v4cUCUcRiJH67jPMUt-Uhn-K4PHxrkoySM2uqAjAF0',
-    IssueDate: 1726236373254,
+    Amount: '1',
     Status: 'Open',
-    Amount: '1'
+    Price: 3,
+    Issuer: 'RPFQd69SX2tbrtNBfVxzVSt9zQYk07WrHOCDhxDHu0o'
   }
-]
+}
 ```
 
 If no orders output, you can use the following command for querying.
@@ -212,12 +200,12 @@ Set the `NoteID` to env variable.
 export NOTEID=<NoteID>
 ```
 
-#### 4. Use agent1 to take order
+#### 4. use agent1 to take order
 
 Run
 
 ```bash
-node ./agent/take.js --walletN=1 --agentId=$AGENT1 --noteId=$NOTEID
+node ./basic/take.js --walletN=1 --agentId=$AGENT1 --noteId=$NOTEID
 ```
 
 After transaction done, the balances of both agents have been updated, and the transaction is complete.
@@ -262,21 +250,40 @@ If you will check balances in your agent:
 node ./balance.js --address=$AMMAGENT2
 ```
 
-#### 3. Add liquidity
+#### 3. Add Pool
 
 add deposited token to your AMM liquidity pool
 
 ```bash
-node ./amm/addLiquidity.js --walletN=2 --agentId=$AMMAGENT2
+node ./amm/addPool.js --walletN=2 --agentId=$AMMAGENT2
 ```
 
-If you will query agent info:
+If you will query agent pool info:
 
 ```bash
 node ./amm/query.js --walletN=2 --agentId=$AMMAGENT2
 ```
 
-#### 4. Request an order from AMM agent
+Output:
+
+```
+pools {
+  "0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0:AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM": {
+    "py": "50",
+    "algo": "UniswapV2",
+    "fee": 30,
+    "px": "50",
+    "y": "AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM",
+    "balances": {
+      "0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0": "50",
+      "AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM": "50"
+    },
+    "x": "0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0"
+  }
+}
+```
+
+#### 4. make an AMM order from AMM agent
 
 ```bash
 node ./amm/request.js --walletN=2 --agentId=$AMMAGENT2
@@ -284,18 +291,20 @@ node ./amm/request.js --walletN=2 --agentId=$AMMAGENT2
 
 Output:
 
-```js
-{
-  Type: 'Orderbook',
-  Status: 'Open',
-  AssetID: '4557tfvtAlS8WS0-KF0sGdfgy6An2dcVXQUGocrKV7U',
-  MakeTx: 'KPo-27zTIYCZYqgzyeLC8FkmXuZf7WnRZWQr8fcWLMI',
-  HolderAssetID: '-v4cUCUcRiJH67jPMUt-Uhn-K4PHxrkoySM2uqAjAF0',
-  HolderAmount: '10',
-  NoteID: '7dGsvqEY-Ler2aljBP2Fk5X1Aeb8TAPF9vI2SEVIOfU',
-  ExpireDate: 1729069364728,
-  IssueDate: 1729069274728,
-  Amount: '2'
+```
+order {
+  "ID": 2601,
+  "AssetID": "0fLIp-xxRnQ8Nk-ruq8SBY8icaIvZMujnqCGU79fnM0",
+  "MakeTx": "zkmqIcN2KNOS38zgAq5AxTfnMeod7OaZUcy_SMOGJqE",
+  "ExpireDate": 1733297855923,
+  "HolderAssetID": "AttsQGi4xgSOTeHM6CNgEVxlrdZi4Y86LQCF__p4HUM",
+  "NoteID": "14ec8heZ5m3XR6j9ZBOIUT-3lhq6qgloaz9ObIG-_PI",
+  "IssueDate": 1733297765923,
+  "HolderAmount": "5",
+  "Amount": "4",
+  "Status": "Open",
+  "Price": 1.25,
+  "Issuer": "xhgS6MeQ4qhYqP21ptsCSHY3m9faNsPs0ewRKB9jvwo"
 }
 ```
 
@@ -305,10 +314,12 @@ Set the `NoteID` to env variable.
 export NOTEID=<NoteID>
 ```
 
-#### 5. Take this order by agent
+#### 5. take this order by agent
+
+Run
 
 ```bash
-node ./agent/take.js --walletN=1 --agentId=$AGENT1 --noteId=$NOTEID
+node ./basic/take.js --walletN=1 --agentId=$AGENT1 --noteId=$NOTEID
 ```
 
 After transaction done, the balances of both agents have been updated, and the transaction is complete.
@@ -323,10 +334,4 @@ node ./amm/query.js --walletN=2 --agentId=$AMMAGENT2
 
 ```bash
 node ./arbitrage.js --agentId=$AGENT1 --orderbookAgentId=$ORDERBOOKAGENT2 --ammAgentId=$AMMAGENT2
-```
-
-#### 7. Remove liquidity from AMM agent
-
-```bash
-node ./amm/removeLiquidity.js --walletN=2 --agentId=$AMMAGENT2
 ```
