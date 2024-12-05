@@ -25,7 +25,7 @@ FFP.AlgoToPool = FFP.AlgoToPool or {
     BigOrder = poolBigOrder
 }
 
-function getPoolId(X, Y)
+local function getPoolId(X, Y)
     if X > Y then
         return Y .. ':' .. X
     end
